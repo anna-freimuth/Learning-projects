@@ -1,2 +1,2 @@
 # Learning-projects
-Tel-ran 
+Tel-Ran 
