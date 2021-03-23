@@ -2,10 +2,13 @@ package anna.string_operations.service;
 
 import anna.string_operations.OperationContext;
 import anna.string_operations.service.operation.IStringOperation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 import java.io.PrintWriter;
 
+@Service
 public class StringHandler {
     private final OperationContext context;
     private final PrintWriter writer;
@@ -13,12 +16,12 @@ public class StringHandler {
     private final String wrongOperation;
     private final String wrongFormat;
 
-    // TODO take constants from the application props file. Other configure in the AppConfiguration
+
     public StringHandler(OperationContext context,
                          PrintWriter writer,
-                         String separator,
-                         String wrongOperation,
-                         String wrongFormat) {
+                         @Value("${separator}") String separator,
+                         @Value("${wrongOperation}") String wrongOperation,
+                         @Value("${wrongFormat}") String wrongFormat) {
         this.context = context;
         this.writer = writer;
         this.separator = separator;
@@ -26,9 +29,9 @@ public class StringHandler {
         this.wrongFormat = wrongFormat;
     }
 
-    //TODO configure the project so that the @Async annotation opens a new thread to invoke this method
-    @Async
-    public void handleString(String line) {
+
+    @Async("executor")
+    public void handleString(String line) throws InterruptedException {
         String res = handleRawString(line);
         writer.println(res);
     }
