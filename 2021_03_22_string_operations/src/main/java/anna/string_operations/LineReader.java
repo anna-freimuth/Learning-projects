@@ -28,7 +28,7 @@ public class LineReader implements ApplicationRunner {
 
                 handler.handleString(line);
             }
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -31,7 +31,7 @@ public class StringHandler {
 
 
     @Async("executor")
-    public void handleString(String line) throws InterruptedException {
+    public void handleString(String line)  {
         String res = handleRawString(line);
         writer.println(res);
     }
