@@ -47,13 +47,13 @@ public class HelloController {
         return "Auto saved " + "make: " + auto.make + ", color: " + auto.color;
     }
 
-    @PatchMapping("auto-edit")
+    @PatchMapping("/auto-edit")
     @ResponseBody
     public String editAuto(@RequestBody Auto auto) {
         return "Auto edited " + "color: " + auto.color;
     }
 
-    @DeleteMapping("auto-delete")
+    @DeleteMapping("/auto-delete")
     @ResponseBody
     public String deleteAuto() {
         return "Auto deleted";
