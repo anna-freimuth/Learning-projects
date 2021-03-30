@@ -18,7 +18,8 @@ public class HelloController {
         return "hello";
     }
 
-    @RequestMapping(value = "/hello-string/{name}", method = RequestMethod.GET)//the same as @GetMapping("/hello-string/{name}")
+    @RequestMapping(value = "/hello-string/{name}", method = RequestMethod.GET)
+//the same as @GetMapping("/hello-string/{name}")
     @ResponseBody
     public String helloString(@PathVariable String name) {
         String capitalName = name.toUpperCase();
@@ -39,7 +40,23 @@ public class HelloController {
         return "The following auto was received: " + "make: " + auto.make + ", color: " + auto.color;
     }
 
-    //TODO write endpoints with the types PUT, PATCH and DELETE. And check them with TalendAPI
 
+    @PutMapping("/auto-edit")
+    @ResponseBody
+    public String saveAuto(@RequestBody Auto auto) {
+        return "Auto saved " + "make: " + auto.make + ", color: " + auto.color;
+    }
+
+    @PatchMapping("auto-edit")
+    @ResponseBody
+    public String editAuto(@RequestBody Auto auto) {
+        return "Auto edited " + "color: " + auto.color;
+    }
+
+    @DeleteMapping("auto-delete")
+    @ResponseBody
+    public String deleteAuto() {
+        return "Auto deleted";
+    }
 
 }
