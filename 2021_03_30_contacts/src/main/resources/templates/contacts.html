@@ -17,33 +17,22 @@
 <div class="container">
 
     <!-- List of contacts -->
-    <div class="collection">
-        <div class="row collection-item hover">
-            <a href="#!" class="col s8 ">Alvin</a>
+
+    <div class="collection" >
+        <!-- Add contact button -->
+        <div class="row">
+            <a class="col s12 waves-effect waves-light btn">Add new contact</a>
+        </div>
+        <div class="row collection-item hover" th:each="contact: ${contacts}" >
+            <a href="#!" class="col s8 " th:text="${contact.name}"></a>
+            <a th:href="'/delete-contact/'+${contact.id}" class="secondary-content"></a>
+            <a th:href="'/delete-contact/'+${contact.id}" class="secondary-content"></a>
             <a class="col s2 waves-effect waves-light btn">Edit</a>
             <a class="col s2 waves-effect waves-light btn">Delete</a>
         </div>
-        <div class="row collection-item hover">
-            <a href="#!" class="col s8 ">Alvin</a>
-            <a class="col s2 waves-effect waves-light btn">Edit</a>
-            <a class="col s2 waves-effect waves-light btn">Delete</a>
-        </div>
-        <div class="row collection-item hover">
-            <a href="#!" class="col s8 ">Alvin</a>
-            <a class="col s2 waves-effect waves-light btn">Edit</a>
-            <a class="col s2 waves-effect waves-light btn">Delete</a>
-        </div>
-        <div class="row collection-item hover">
-            <a href="#!" class="col s8 ">Alvin</a>
-            <a class="col s2 waves-effect waves-light btn">Edit</a>
-            <a class="col s2 waves-effect waves-light btn">Delete</a>
-        </div>
+
     </div>
 
-    <!-- Add contact button -->
-    <div class="row">
-        <a class="col s12 waves-effect waves-light btn">Add new contact</a>
-    </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -60,9 +49,9 @@
         color:#00838f;
         font-family: Verdana,serif;
     }
-   A:hover.s8{
-       color: #fafafa;
-   }
+    A:hover.s8{
+        color: #fafafa;
+    }
 
     body {
         background-color: #e0f2f1;
