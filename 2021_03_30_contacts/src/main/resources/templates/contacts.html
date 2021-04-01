@@ -25,10 +25,8 @@
         </div>
         <div class="row collection-item hover" th:each="contact: ${contacts}" >
             <a href="#!" class="col s8 " th:text="${contact.name}"></a>
-            <a th:href="'/delete-contact/'+${contact.id}" class="secondary-content"></a>
-            <a th:href="'/delete-contact/'+${contact.id}" class="secondary-content"></a>
-            <a class="col s2 waves-effect waves-light btn">Edit</a>
-            <a class="col s2 waves-effect waves-light btn">Delete</a>
+            <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>
+            <a class="col s2 waves-effect waves-light btn" th:href="'/delete-contact/'+${contact.id}">Delete</a>
         </div>
 
     </div>
