@@ -40,7 +40,7 @@ public class ContactController {
      */
     @GetMapping("/add-contact")
     public String addContact(Model model) {
-        model.addAttribute("contact", new Contact());
+        model.addAttribute("contact",new Contact());
         return "contact-form";
     }
 
