@@ -21,49 +21,53 @@
         <a class="col s12 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
     </div>
     <!-- List of contacts -->
-        <div class="row collection-item hover" th:each="contact: ${contacts}" >
-            <a class="col s8" th:text="${contact.fullName()}"  th:href="'/contacts/'+${contact.id}"></a>
-            <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>
-            <a class="col s2 waves-effect waves-light btn delete" th:href="'/delete-contact/'+${contact.id}">Delete</a>
-        </div>
-
+    <div class="row collection-item hover" th:each="contact: ${contacts}">
+        <a class="col s8" th:text="${contact.fullName()}" th:href="'/contacts/'+${contact.id}"></a>
+        <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>
+        <a class="col s2 waves-effect waves-light btn delete" th:href="'/delete-contact/'+${contact.id}">Delete</a>
     </div>
+
+</div>
 
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <style>
-    .nav-wrapper{
+    .nav-wrapper {
         background-color: #7179DB;
     }
-    .hover:hover{
+
+    .hover:hover {
         background-color: #e8f5e9;
     }
-.btn-floating.btn-large.waves-effect.waves-light{
-    background-color: #84DB9D;
-}
-.hover {
+
+    .hover {
         padding: .5em;
         margin: 0;
     }
-    a.col.s8{
-        color:#7179DB;
-        font-family: Verdana,serif;
+
+    a.col.s8 {
+        color: #7179DB;
+        font-family: Verdana, serif;
     }
-    A:hover.s8{
-        color:#e57373 ;
+
+    A:hover.s8 {
+        color: #e57373;
     }
 
     body {
         background-color: #e0f2f1;
     }
-    .col.s12.waves-effect.waves-light.btn{
+
+    .col.s12.waves-effect.waves-light.btn {
         background-color: #84DB9D;
     }
-    .col.s2.waves-effect.waves-light.btn{
+
+    .col.s2.waves-effect.waves-light.btn {
         background-color: #7179DB;
     }
-    .col.s2.waves-effect.waves-light.btn.delete{
+
+    .col.s2.waves-effect.waves-light.btn.delete {
         background-color: #DB8485;
     }
 
