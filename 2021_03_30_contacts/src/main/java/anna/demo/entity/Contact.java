@@ -1,5 +1,7 @@
 package anna.demo.entity;
 
+import java.util.Objects;
+
 public class Contact {
 
     private  int id;
@@ -47,5 +49,22 @@ public class Contact {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String fullName() {
+        return name + " " + lastName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return id == contact.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

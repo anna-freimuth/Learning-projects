@@ -14,17 +14,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 </head>
 <body>
+<br>
 <div class="container">
-
+    <!-- Add contact button -->
+    <div class="row">
+        <a class="col s12 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
+    </div>
     <!-- List of contacts -->
-
-    <div class="collection" >
-        <!-- Add contact button -->
-        <div class="row">
-            <a class="col s12 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
-        </div>
         <div class="row collection-item hover" th:each="contact: ${contacts}" >
-            <a href="#!" class="col s8 " th:text="${contact.name}"></a>
+            <a class="col s8" th:text="${contact.fullName()}"  th:href="'/contacts/'+${contact.id}"></a>
             <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>
             <a class="col s2 waves-effect waves-light btn delete" th:href="'/delete-contact/'+${contact.id}">Delete</a>
         </div>
@@ -41,8 +39,10 @@
     .hover:hover{
         background-color: #e8f5e9;
     }
-
-    .hover {
+.btn-floating.btn-large.waves-effect.waves-light{
+    background-color: #84DB9D;
+}
+.hover {
         padding: .5em;
         margin: 0;
     }

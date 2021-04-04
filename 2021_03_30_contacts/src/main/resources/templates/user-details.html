@@ -15,27 +15,25 @@
     </nav>
 </head>
 <body>
+<br>
 <div class="container">
     <!-- Page Content goes here -->
-    <table>
-        <thead>
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Age</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        </tbody>
-    </table>
-
-
+    <div class="row">
+        <div class="col s6 offset-s5">
+   <div class="info-line">
+       <i class="first_name">First Name: </i>
+        <p class="first_name filled" th:text="${contact.name}"></p>
+</div>
+    <div class="info-line">
+        <i class="last_name">Last Name: </i>
+        <p class="last_name filled" th:text="${contact.lastName}"></p>
+    </div>
+    <div class="info-line">
+        <i class="age">Age: </i>
+        <p class="age filled" th:text="${contact.age}"></p>
+    </div>
+        </div>
+    </div>
     <div class="row">
         <a class="col s3 offset-s4 waves-effect waves-light btn-large contact-button" th:href="'/contacts'">Back</a>
     </div>
@@ -58,7 +56,15 @@
     .col.s3.offset-s4.waves-effect.waves-light.btn-large.contact-button {
         background-color: #84DB9D;
     }
+    .info-line{
+        color: #84DB9D;
+        font-size: 20px;
 
+    }
+    .filled{
+        color: #7179DB;
+        font-family: "Franklin Gothic Medium";
+    }
 
 </style>
 

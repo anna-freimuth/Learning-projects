@@ -1,6 +1,8 @@
 package anna.demo.controller;
 
 import anna.demo.entity.Contact;
+import anna.demo.entity.ContactList;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +12,12 @@ import java.util.List;
 
 @Controller
 public class ContactController {
-    List<Contact> contacts = Arrays.asList(
-            new Contact(1, "Vasya", "Vasin", 21),
-            new Contact(2, "Petya", "Petin", 22)
-    );
-    static int lastUsedId = 2;
+
+    private final ContactList contacts;
+
+    public ContactController(ContactList contacts) {
+        this.contacts= contacts;
+    }
 
     /**
      * The endpoint should return the page containing the list of contacts
@@ -23,12 +26,7 @@ public class ContactController {
      */
     @GetMapping("/contacts")
     public String contacts(Model model) {
-
-        List<Contact> contacts = Arrays.asList(
-                new Contact(1, "Vasya", "Vasin", 21),
-                new Contact(2, "Petya", "Peterson", 22)
-        );
-        model.addAttribute("contacts", contacts);
+        model.addAttribute("contacts", contacts.getContacts());
 
         return "contacts";
     }
@@ -51,7 +49,9 @@ public class ContactController {
      * @return
      */
     @GetMapping("/edit-contact/{id}")
-    public String editContact(@PathVariable int id) {
+    public String editContact(@PathVariable int id, Model model) {
+        Contact contact = contacts.getContactById(id);
+        model.addAttribute("contact", contact);
         return "contact-form";
     }
 
@@ -62,7 +62,9 @@ public class ContactController {
      * @return
      */
     @GetMapping("/contacts/{id}")
-    public String contact(@PathVariable int id) {
+    public String contact(@PathVariable int id,Model model) {
+        Contact contact = contacts.getContactById(id);
+        model.addAttribute("contact",contact);
         return "user-details";
     }
 
@@ -74,6 +76,10 @@ public class ContactController {
      */
     @PostMapping("/save-contact")
     public String saveContact(@ModelAttribute Contact contact) {
+        if (contact.getId() == 0)
+            contacts.addContact(contact);
+        else
+            contacts.editContact(contact);
         return "redirect:/contacts";
     }
 
@@ -85,6 +91,9 @@ public class ContactController {
      */
     @GetMapping("/delete-contact/{id}")
     public String deleteContact(@PathVariable int id) {
+        Contact contact= new Contact();
+        contact.setId(id);
+        contacts.deleteContact(contact);
         return "redirect:/contacts";
     }
 }
