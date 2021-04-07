@@ -1,6 +1,8 @@
 package anna.demo.entity;
 
+
 import java.util.Objects;
+
 
 public class Contact {
 
