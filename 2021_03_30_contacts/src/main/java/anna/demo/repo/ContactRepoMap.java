@@ -24,7 +24,6 @@ public class ContactRepoMap implements IContactRepo {
     }
 
     private int getMaxId() {
-
         return contactById.keySet().stream().max(Integer::compare).orElse(0);
     }
 

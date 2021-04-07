@@ -36,7 +36,6 @@ public class ContactRepoList implements IContactRepo{
     public Contact remove(int id) {
         for (Contact contact: contacts) {
             if (contact.getId() == id) {
-
                 contacts.remove(contact);
                 return contact;
             }

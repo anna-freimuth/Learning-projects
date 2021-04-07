@@ -1,8 +1,6 @@
 package anna.demo.entity;
 
-
 import java.util.Objects;
-
 
 public class Contact {
 
@@ -12,8 +10,8 @@ public class Contact {
     private int age;
 
     public Contact() {
-
     }
+
     public Contact(int id, String name, String lastName, int age) {
         this.id = id;
         this.name = name;

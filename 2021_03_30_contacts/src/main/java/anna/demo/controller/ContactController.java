@@ -26,7 +26,6 @@ public class ContactController {
     public String contacts(Model model) {
         List<Contact> contactList = contacts.getAll();
         model.addAttribute("contacts", contactList);
-
         return "contacts";
     }
 
