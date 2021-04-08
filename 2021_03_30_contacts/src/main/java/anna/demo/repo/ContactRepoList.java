@@ -51,12 +51,6 @@ public class ContactRepoList implements IContactRepo{
         return contacts;
     }
 
-    private int getLastId(){
-        return contacts.stream()
-                .map(Contact::getId)
-                .max(Integer::compare)
-                .orElse(0);
-    }
 
     public int createId(){
         return (int) idCounter.getAndIncrement();
