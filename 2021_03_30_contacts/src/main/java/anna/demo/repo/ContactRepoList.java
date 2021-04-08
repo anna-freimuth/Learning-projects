@@ -5,13 +5,14 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class ContactRepoList implements IContactRepo{
 
     ArrayList<Contact> contacts = new ArrayList<>();
-    private final AtomicLong idCounter = new AtomicLong(1);
+    private final AtomicInteger idCounter = new AtomicInteger(1);
 
 
     @Override
@@ -53,6 +54,6 @@ public class ContactRepoList implements IContactRepo{
 
 
     public int createId(){
-        return (int) idCounter.getAndIncrement();
+        return idCounter.getAndIncrement();
     }
 }
