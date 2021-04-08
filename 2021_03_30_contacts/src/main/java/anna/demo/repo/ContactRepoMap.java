@@ -6,16 +6,18 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Repository
 public class ContactRepoMap implements IContactRepo {
 
     HashMap<Integer, Contact> contactById = new HashMap<>();
+    private final AtomicLong idCounter = new AtomicLong(1);
 
     @Override
     public void save(Contact contact) {
         if (contact.getId()==0) {
-            contact.setId(getMaxId() + 1);
+            contact.setId(createId());
             contactById.put(contact.getId(), contact);
         }
         else {
@@ -40,5 +42,9 @@ public class ContactRepoMap implements IContactRepo {
     @Override
     public List<Contact> findAll() {
         return new ArrayList<>(contactById.values());
+    }
+
+    public int createId(){
+        return (int) idCounter.getAndIncrement();
     }
 }
