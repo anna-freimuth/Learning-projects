@@ -5,16 +5,19 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Repository
 public class ContactRepoList implements IContactRepo{
 
     ArrayList<Contact> contacts = new ArrayList<>();
+    private final AtomicInteger idCounter = new AtomicInteger(1);
+
 
     @Override
     public void save(Contact contact) {
         if (contact.getId() == 0){
-            contact.setId(getLastId() + 1);
+            contact.setId(createId());
             contacts.add(contact);
         } else {
             int contactIndex = contacts.indexOf(contact);
@@ -48,10 +51,8 @@ public class ContactRepoList implements IContactRepo{
         return contacts;
     }
 
-    private int getLastId(){
-        return contacts.stream()
-                .map(Contact::getId)
-                .max(Integer::compare)
-                .orElse(0);
+
+    public int createId(){
+        return idCounter.getAndIncrement();
     }
 }
