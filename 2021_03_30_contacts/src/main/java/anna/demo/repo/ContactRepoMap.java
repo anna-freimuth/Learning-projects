@@ -11,16 +11,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class ContactRepoMap implements IContactRepo {
 
-    HashMap<Integer, Contact> contactById = new HashMap<>();
+    private final HashMap<Integer, Contact> contactById = new HashMap<>();
     private final AtomicInteger idCounter = new AtomicInteger(1);
 
     @Override
     public void save(Contact contact) {
-        if (contact.getId()==0) {
+        if (contact.getId() == 0) {
             contact.setId(createId());
             contactById.put(contact.getId(), contact);
-        }
-        else {
+        } else {
             contactById.put(contact.getId(), contact);
         }
     }
@@ -40,7 +39,7 @@ public class ContactRepoMap implements IContactRepo {
         return new ArrayList<>(contactById.values());
     }
 
-    public int createId(){
+    public int createId() {
         return idCounter.getAndIncrement();
     }
 }

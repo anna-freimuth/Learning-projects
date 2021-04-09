@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//The domain logic lies here (business logic)
 @Service
 public class ContactService {
     IContactRepo contactRepo;

@@ -2,6 +2,7 @@ package anna.demo.entity;
 
 import java.util.Objects;
 
+//Entities are description of the business model (Object of business logic)
 public class Contact {
 
     private  int id;
