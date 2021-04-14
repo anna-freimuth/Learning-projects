@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Contact details</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+</head>
+<body>
+<br>
+<div class="container">
+    <!-- Page Content goes here -->
+    <div class="row">
+        <div class="col s6 offset-s5">
+            <div class="info-line">
+                <i class="first_name">First Name: </i>
+                <p class="first_name filled" th:text="${contact.name}"></p>
+            </div>
+            <div class="info-line">
+                <i class="last_name">Last Name: </i>
+                <p class="last_name filled" th:text="${contact.lastName}"></p>
+            </div>
+            <div class="info-line">
+                <i class="age">Age: </i>
+                <p class="age filled" th:text="${contact.age}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <a class="col s3 offset-s4 waves-effect waves-light btn-large contact-button" th:href="'/contacts'">Back</a>
+    </div>
+</div>
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+<style>
+    .nav-wrapper {
+        background-color: #7179DB;
+    }
+
+    body {
+        background-color: #e0f2f1;
+    }
+
+    .col.s3.offset-s4.waves-effect.waves-light.btn-large.contact-button {
+        background-color: #84DB9D;
+    }
+    .info-line{
+        color: #84DB9D;
+        font-size: 20px;
+
+    }
+    .filled{
+        color: #7179DB;
+        font-family: "Franklin Gothic Medium";
+    }
+
+</style>
+
+</html>

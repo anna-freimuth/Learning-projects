@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add/Edit contact</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Edit contact</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+
+</head>
+<br>
+<body>
+<div class="container">
+    <div class="row">
+        <form class="col s6" action="/save-contact" method="post">
+            <input id="id" name="id" type="hidden" value="0" th:value="${contact.id}">
+            <div class="row">
+                <div class="input-field col s6 offset-s9">
+                    <input id="first_name" name="name" type="text" class="validate form-input" value="" th:value="${contact.name}">
+                    <label for="first_name" class="form-label">First Name</label>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="input-field col s6 offset-s9">
+                    <input id="last_name" name="lastName" type="text" class="validate" value="" th:value="${contact.lastName}">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="input-field col s6 offset-s9">
+                    <input id="age" name="age" type="number" class="validate" min="0" max="200" value="" th:value="${contact.age}">
+                    <label for="age">Age</label>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="btn_2 col s8 offset-s8">
+                    <div class="row">
+                        <a class="col s5 waves-effect waves-light btn-large cancel-button" th:href="'/contacts/'" >Cancel</a>
+                        <button type="submit" class="col s5 offset-s2 waves-effect waves-light btn-large save-button">Save</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+<style>
+    .nav-wrapper{
+        background-color: #7179DB;
+    }
+    .col.s5.offset-s2.waves-effect.waves-light.btn-large.save-button{
+        background-color: #84DB9D;
+    }
+    .col.s5.waves-effect.waves-light.btn-large.cancel-button{
+        background-color: #DB8485;
+    }
+
+    body {
+        background-color: #e0f2f1;
+    }
+
+    .input-field input:focus + label {
+        color: #7179DB!important;
+    }
+
+    .input-field input:focus {
+        border-bottom: 1px solid  #7179DB!important;
+        box-shadow: 0 1px 0 0 #7179DB !important;
+    }
+
+</style>
+</html>
