@@ -3,3 +3,4 @@
 /httpRequests/
 *.iml
 .idea
+.xml
