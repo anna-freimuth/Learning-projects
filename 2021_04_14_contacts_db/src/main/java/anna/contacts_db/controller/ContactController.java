@@ -2,6 +2,7 @@ package anna.contacts_db.controller;
 
 import anna.contacts_db.dto.SearchFormDto;
 import anna.contacts_db.entity.Contact;
+import anna.contacts_db.repo.IContactRepo;
 import anna.contacts_db.service.ContactService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Controller
 public class ContactController {
+
     private final ContactService contactService;
 
     public ContactController(ContactService contactService) {
@@ -98,9 +100,10 @@ public class ContactController {
         return "forward:/contacts";
     }
 
-    @PostMapping("/contacts/search")
-    public String searchContacts(@ModelAttribute SearchFormDto searchFormDto,Model model) {
-        // TODO fetch all objects from db with name or lastname like searchForm.searchPattern and insert them into the model
+    @GetMapping("/contacts/search")
+    public String searchContacts(@ModelAttribute SearchFormDto searchFormDto, Model model) {
+        List<Contact> contacts = contactService.searchPattern(searchFormDto);
+        model.addAttribute("contacts", contacts);
         return "contacts";
     }
 }

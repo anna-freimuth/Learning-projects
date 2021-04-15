@@ -3,7 +3,7 @@
 
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Welcome to contacts</a>
+        <a href="/contacts" class="brand-logo center">Welcome to contacts</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
         </ul>
     </div>
@@ -18,10 +18,21 @@
 <div class="container">
     <!-- Add contact button -->
     <div class="row">
-        <a class="col s12 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
+        <a class="col s4 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
     </div>
 
-    <!-- TODO add somewhere here a form which will be sending pattern to the endpoint "contacts/search"-->
+    <!-- Add input field -->
+    <div class="row">
+    <form method="get" action="/contacts/search">
+        <div class="input-field col s4">
+            <button type="submit" class="col s4 waves-effect waves-light btn " name="action">Search</button>
+            <input type="text" name="name" placeholder="first name">
+            <input type="text" name="lastName" placeholder="last name">
+        </div>
+    </form>
+</div>
+
+
     <!-- List of contacts -->
     <div class="row collection-item hover" th:each="contact: ${contacts}">
         <a class="col s8" th:text="${contact.fullName()}" th:href="'/contacts/'+${contact.id}"></a>
@@ -61,7 +72,7 @@
         background-color: #e0f2f1;
     }
 
-    .col.s12.waves-effect.waves-light.btn {
+    .col.s4.waves-effect.waves-light.btn {
         background-color: #84DB9D;
     }
 
@@ -71,6 +82,14 @@
 
     .col.s2.waves-effect.waves-light.btn.delete {
         background-color: #DB8485;
+    }
+    .input-field input:focus + label {
+        color: #7179DB!important;
+    }
+
+    .input-field input:focus {
+        border-bottom: 1px solid  #7179DB!important;
+        box-shadow: 0 1px 0 0 #7179DB !important;
     }
 
 </style>
