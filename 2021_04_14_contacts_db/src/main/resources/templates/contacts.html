@@ -20,6 +20,8 @@
     <div class="row">
         <a class="col s12 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
     </div>
+
+    <!-- TODO add somewhere here a form which will be sending pattern to the endpoint "contacts/search"-->
     <!-- List of contacts -->
     <div class="row collection-item hover" th:each="contact: ${contacts}">
         <a class="col s8" th:text="${contact.fullName()}" th:href="'/contacts/'+${contact.id}"></a>
