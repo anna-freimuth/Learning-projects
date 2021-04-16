@@ -1,11 +1,13 @@
 package anna.contacts_db.service;
 
+import anna.contacts_db.dto.SearchFormDto;
 import anna.contacts_db.entity.Contact;
 import anna.contacts_db.repo.IContactRepo;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
@@ -40,5 +42,7 @@ public class ContactService {
         return res;
     }
 
-    //TODO create a method which will be searching contacts by a pattern
+    public List<Contact> searchPattern(SearchFormDto searchFormDto) {
+        return contactRepo.findByLastNameStartingWithAndNameStartingWith(searchFormDto.getLastName(), searchFormDto.getName());
+    }
 }
