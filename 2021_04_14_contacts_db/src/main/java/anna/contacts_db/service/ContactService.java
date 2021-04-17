@@ -45,4 +45,8 @@ public class ContactService {
     public List<Contact> searchPattern(SearchFormDto searchFormDto) {
         return contactRepo.findByLastNameStartingWithAndNameStartingWith(searchFormDto.getLastName(), searchFormDto.getName());
     }
+
+//    public List<Contact> searchByNameOrLastName(String pattern) {
+//        return new ArrayList<>(contactRepo.findAllByNameContainingIgnoreCaseOrLastNameContainingIgnoreCase(pattern, pattern));
+//    }
 }
