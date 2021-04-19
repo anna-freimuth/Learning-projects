@@ -17,3 +17,23 @@ let e = f2(d)
 console.log(`e equals to ${e}`)
 e = f2;
 console.log(e(d))
+
+let vasya={
+    name:"Vasya",
+    age:23,
+    greetings(){
+        console.log(`My name is ${this.name}`)
+    },
+    greetings2:function(){
+        console.log(this.name)
+    }
+}
+function printAll(obj){
+    for(let key in obj){
+        console.log(`${key}: ${obj[key]}`);
+    }
+}
+printAll(vasya);
+
+const fieldName="greetings";
+vasya[fieldName]();
