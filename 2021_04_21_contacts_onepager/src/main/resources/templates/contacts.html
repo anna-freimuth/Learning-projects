@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="/contacts" class="brand-logo center">Welcome to contacts</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        </ul>
+    </div>
+</nav>
+<head>
+    <meta charset="UTF-8">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+</head>
+<body>
+<br>
+<div class="container">
+    <!--
+     <div class="col s4">
+                <div class="search" style="text-align: right">
+                    <form action="/contacts/search" method="post">
+                        <input type="text" class="form-control" name="searchPattern"
+                               placeholder="search for firstname or lastname">
+                        <button class="btn btn-primary btn-lg" role="button">Search
+                        </button>
+                    </form>
+                </div>
+            </div>
+    -->
+
+    <!-- Add contact button -->
+    <div class="row">
+        <a class="col s4 waves-effect waves-light btn" th:href="'/add-contact'">Add new contact</a>
+    </div>
+
+    <!-- Add input field -->
+    <div class="row">
+        <form method="get" action="/contacts/search">
+            <div class="input-field col s4">
+                <button type="submit" class="col s4 waves-effect waves-light btn " name="action">Search</button>
+                <input type="text" name="name" placeholder="first name">
+                <input type="text" name="lastName" placeholder="last name">
+            </div>
+        </form>
+    </div>
+
+
+    <!-- List of contacts -->
+    <div class="row collection-item hover" th:each="contact: ${contacts}">
+        <a class="col s8" th:text="${contact.fullName()}" th:href="'/contacts/'+${contact.id}"></a>
+        <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>
+        <a class="col s2 waves-effect waves-light btn delete" th:href="'/delete-contact/'+${contact.id}">Delete</a>
+    </div>
+
+</div>
+
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<style>
+    .nav-wrapper {
+        background-color: #7179DB;
+    }
+
+    .hover:hover {
+        background-color: #e8f5e9;
+    }
+
+    .hover {
+        padding: .5em;
+        margin: 0;
+    }
+
+    a.col.s8 {
+        color: #7179DB;
+        font-family: Verdana, serif;
+    }
+
+    A:hover.s8 {
+        color: #e57373;
+    }
+
+    body {
+        background-color: #e0f2f1;
+    }
+
+    .col.s4.waves-effect.waves-light.btn {
+        background-color: #84DB9D;
+    }
+
+    .col.s2.waves-effect.waves-light.btn {
+        background-color: #7179DB;
+    }
+
+    .col.s2.waves-effect.waves-light.btn.delete {
+        background-color: #DB8485;
+    }
+    .input-field input:focus + label {
+        color: #7179DB!important;
+    }
+
+    .input-field input:focus {
+        border-bottom: 1px solid  #7179DB!important;
+        box-shadow: 0 1px 0 0 #7179DB !important;
+    }
+
+</style>
+</body>
+</html>
