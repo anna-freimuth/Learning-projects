@@ -57,4 +57,8 @@ public class Contact {
     public int getAge() {
         return age;
     }
+
+    public String fullName(){
+        return name + " " + lastName;
+    }
 }
