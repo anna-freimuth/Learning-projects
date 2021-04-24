@@ -1,0 +1,45 @@
+.nav-wrapper {
+    background-color: #7179DB;
+}
+
+.hover:hover {
+    background-color: #e8f5e9;
+}
+
+.hover {
+    padding: .5em;
+    margin: 0;
+}
+
+a.col.s8 {
+    color: #7179DB;
+    font-family: Verdana, serif;
+}
+
+A:hover.s8 {
+    color: #e57373;
+}
+
+body {
+    background-color: #e0f2f1;
+}
+
+.col.s4.waves-effect.waves-light.btn {
+    background-color: #84DB9D;
+}
+
+.col.s2.waves-effect.waves-light.btn {
+    background-color: #7179DB;
+}
+
+.col.s2.waves-effect.waves-light.btn.delete {
+    background-color: #DB8485;
+}
+.input-field input:focus + label {
+    color: #7179DB!important;
+}
+
+.input-field input:focus {
+    border-bottom: 1px solid  #7179DB!important;
+    box-shadow: 0 1px 0 0 #7179DB !important;
+}

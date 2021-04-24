@@ -1,10 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<nav>
+    <div class="nav-wrapper">
+        <a href="/contacts" class="brand-logo center">Welcome to contacts</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+        </ul>
+    </div>
+</nav>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Contacts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
+<br>
+<div class="container">
+
+
+
+    <!-- Add search button -->
+    <div class="row">
+        <form method="post" action="/contacts/search">
+            <div class="input-field col s6">
+                <button type="submit" class="col s4 waves-effect waves-light btn " name="action">Search</button>
+                <!-- Add input field -->
+                <input type="text" name="searchPattern" placeholder="first name or last name">
+            </div>
+        </form>
+    </div>
+
+
+    <form class="row" id="contact-form">
+        <div class="col s3">
+            <!-- Add contact button -->
+            <button class="btn-floating btn-large waves-effect waves-light blue" data-action="add">
+                <i class="material-icons">>+</i>
+            </button>
+            <!-- Add cancel button -->
+            <button class="btn-floating btn-large waves-effect waves-light red hide" data-action="cancel">
+                <i class="material-icons">close</i>
+            </button>
+            <!-- Add edit button -->
+            <button class="btn-floating btn-large waves-effect waves-light blue hide" data-action="edit">
+                <i class="material-icons">check</i>
+            </button>
+        </div>
+
+        <input type="hidden" name="id">
+        <div class="input-field col s3">
+            <input type="text" class="materialize-textarea" name="name"
+                   placeholder="first name"/>
+        </div>
+        <div class="input-field col s3">
+            <input type="text" class="materialize-textarea" name="lastname"
+                   placeholder="last name"/>
+        </div>
+        <div class="input-field col s3">
+            <input type="text" class="materialize-textarea" name="age"
+                   placeholder="age"/>
+        </div>
+    </form>
+
+    <div class="row">
+        <div class="col s12">
+
+            <div class="card">
+                <div class="card-content">
+                    <ul class="collection with-header" id="contact-wrapper">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List of contacts -->
+<!--    <div class="row collection-item hover" th:each="contact: ${contacts}">-->
+<!--        <a class="col s8" th:text="${contact.fullName()}" th:href="'/contacts/'+${contact.id}"></a>-->
+<!--        <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>-->
+<!--        <a class="col s2 waves-effect waves-light btn delete" th:href="'/delete-contact/'+${contact.id}">Delete</a>-->
+<!--    </div>-->
+
+</div>
+
+
+</div>
+<!-- JavaScript -->
+<script src="/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+<li class="collection-item hide contact-item" id="contact-template">
+    <a class="badge" data-action="toggleDetails">
+        <span style="color: darkcyan" data-id="name">name</span>
+        <span style="color: darkcyan" data-id="lastname">last name</span>
+    </a>
+    <a class="secondary-content" data-action="delete">
+        <i class="material-icons waves-light red-text">delete</i>
+    </a>
+    <a class="secondary-content" data-action="edit">
+        <i class="material-icons teal-text">edit</i>
+    </a>
+</li>
 
 </body>
 </html>
