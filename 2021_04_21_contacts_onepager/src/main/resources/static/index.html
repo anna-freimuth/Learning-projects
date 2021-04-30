@@ -37,7 +37,7 @@
         <div class="col s3">
             <!-- Add contact button -->
             <button class="btn-floating btn-large waves-effect waves-light blue" data-action="add">
-                <i class="material-icons">>+</i>
+                <i class="material-icons">+</i>
             </button>
             <!-- Add cancel button -->
             <button class="btn-floating btn-large waves-effect waves-light red hide" data-action="cancel">
@@ -55,7 +55,7 @@
                    placeholder="first name"/>
         </div>
         <div class="input-field col s3">
-            <input type="text" class="materialize-textarea" name="lastname"
+            <input type="text" class="materialize-textarea" name="lastName"
                    placeholder="last name"/>
         </div>
         <div class="input-field col s3">
@@ -76,14 +76,6 @@
             </div>
         </div>
     </div>
-
-    <!-- List of contacts -->
-<!--    <div class="row collection-item hover" th:each="contact: ${contacts}">-->
-<!--        <a class="col s8" th:text="${contact.fullName()}" th:href="'/contacts/'+${contact.id}"></a>-->
-<!--        <a class="col s2 waves-effect waves-light btn" th:href="'/edit-contact/'+${contact.id}">Edit</a>-->
-<!--        <a class="col s2 waves-effect waves-light btn delete" th:href="'/delete-contact/'+${contact.id}">Delete</a>-->
-<!--    </div>-->
-
 </div>
 
 

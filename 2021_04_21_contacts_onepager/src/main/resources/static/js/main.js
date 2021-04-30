@@ -35,10 +35,9 @@ class ContactWrapperListener {
     }
 
     toggleDetails(event) {
-        // alert("details");
-        //TODO clicking on the contact the user should see the details of the contact. In order to do this one
-        // should perform the following:
-        // add html code with the details into contact template. Hide/open it while clicking on the name of the contact.
+        const contactDom = event.target.closest(".contact-item");
+        this.contactService.toggleDetails(contactDom.contact);
+
     }
 
     delete(event) {
@@ -142,8 +141,12 @@ class ContactService {
         }
     }
 
-    cancelEdit(){
-        //TODO complete. Just transfer the from into adding state.
+    cancelEdit() {
+        this.renderer.toAddForm();
+    }
+
+    toggleDetails(contact) {
+        this.renderer.toggleDetails(contact);
     }
 }
 
@@ -168,6 +171,7 @@ class ContactRenderer {
         contactDom.querySelector('span[data-id="name"]').innerHTML = contact.name;
         contactDom.querySelector('span[data-id="lastname"]').innerHTML = contact.lastName;
         contactDom.classList.remove("hide");
+        contactDom.addEventListener('click', this.contactWrapperDom.toggleDetails)
 
         this.contactWrapperDom.append(contactDom);
     }
@@ -204,6 +208,29 @@ class ContactRenderer {
     toAddForm() {
         this.clearForm();
         this.addButtonDom.classList.remove("hide");
+        this.editButtonDom.classList.add("hide");
+        this.cancelButtonDom.classList.add("hide");
+    }
+
+    toggleDetails(contact) {
+
+        if (
+            this.addButtonDom.classList.contains("hide") &&
+            this.editButtonDom.classList.contains("hide") &&
+            this.cancelButtonDom.classList.contains("hide") &&
+            this.contactFormDom.elements.id.value==contact.id
+
+        ) {
+            this.toAddForm();
+            return;
+        }
+
+        this.contactFormDom.elements.id.value = contact.id;
+        this.contactFormDom.elements.name.value = contact.name;
+        this.contactFormDom.elements.lastName.value = contact.lastName;
+        this.contactFormDom.elements.age.value = contact.age;
+
+        this.addButtonDom.classList.add("hide");
         this.editButtonDom.classList.add("hide");
         this.cancelButtonDom.classList.add("hide");
     }
