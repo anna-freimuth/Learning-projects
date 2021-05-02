@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const contactTemplateDom = document.querySelector("#contact-template");
     const contactWrapperDom = document.querySelector("#contact-wrapper");
-
+    const contactSearchDom = document.querySelector("#search-form");
 
     const contactFormDom = document.querySelector("#contact-form");
 
@@ -11,12 +11,50 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const contactWrapperListener = new ContactWrapperListener(contactService);
     const contactFormClickListener = new ContactFormClickListener(contactService);
+    const contactSearchListener = new ContactSearchListener(contactService);
 
     contactFormDom.addEventListener("click", contactFormClickListener);
     contactWrapperDom.addEventListener("click", contactWrapperListener)
+    contactSearchDom.addEventListener("click", contactSearchListener)
 });
 
 const HOST = "http://localhost:8080/api/contacts";
+
+class ContactSearchListener{
+    constructor(contactService) {
+        this.contactService = contactService;
+    }
+
+    handleEvent(event) {
+        event.preventDefault();
+
+        if (event.target.dataset.action) {
+            this[event.target.dataset.action](event);
+        } else {
+            const buttonDom = event.target.closest("button");
+            if (buttonDom) {
+                this[buttonDom.dataset.action](event);
+            }
+        }
+    }
+
+    search(event) {
+        const searchFormDom = event.currentTarget;
+        const pattern = searchFormDom.elements.searchPattern.value;
+
+        if (pattern.length >= 3)
+            this.contactService.search(pattern)
+        else
+            alert("Please, enter min 3 symbols");
+    }
+
+    refresh(event) {
+        const searchFormDom = event.currentTarget;
+        searchFormDom.elements.searchPattern.value = "";
+
+        this.contactService.cleanLoad();
+    }
+}
 
 class ContactWrapperListener {
 
@@ -148,6 +186,38 @@ class ContactService {
     toggleDetails(contact) {
         this.renderer.toggleDetails(contact);
     }
+
+    cleanLoad() {
+        this.renderer.clearAll();
+        this.loadAll();
+    }
+
+    async search(pattern) {
+        const response = await this.client.getAll();
+        if (response.ok) {
+            let contacts = await response.json();
+            contacts = this.filterContacts(pattern, contacts);
+            this.renderer.clearAll();
+            this.renderer.renderContacts(contacts);
+        }
+
+    }
+
+    filterContacts(pattern, contacts) {
+        pattern = pattern.toLowerCase();
+        const res = [];
+        for (let contact of contacts) {
+            const name = contact.name.toLowerCase();
+            const lastName = contact.lastName.toLowerCase();
+
+            if (name.includes(pattern) || lastName.includes(pattern)) {
+                res.push(contact)
+            }
+        }
+        return res;
+    }
+
+
 }
 
 // to render html elements

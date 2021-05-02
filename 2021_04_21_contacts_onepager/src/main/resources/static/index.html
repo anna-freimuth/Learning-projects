@@ -3,7 +3,7 @@
 
 <nav>
     <div class="nav-wrapper">
-        <a href="/contacts" class="brand-logo center">Welcome to contacts</a>
+        <a href="/" class="brand-logo center">Welcome to contacts</a>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
         </ul>
     </div>
@@ -20,14 +20,13 @@
 <div class="container">
 
 
-
     <!-- Add search button -->
     <div class="row">
-        <form method="post" action="/contacts/search">
-            <div class="input-field col s6">
-                <button type="submit" class="col s4 waves-effect waves-light btn " name="action">Search</button>
+        <form id="search-form" >
+            <div class="input-field col s6" >
+                <button data-action="search" class="col s4 waves-effect waves-light btn " name="action">Search</button>
                 <!-- Add input field -->
-                <input type="text" name="searchPattern" placeholder="first name or last name">
+                <input type="text"  name="searchPattern" placeholder="first name or last name">
             </div>
         </form>
     </div>
